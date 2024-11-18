@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.niss.app.RootController">
+   <left>
+      <VBox prefHeight="380.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane vgap="20.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" prefWidth="73.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="157.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Name" />
+                  <Label text="Surname" GridPane.rowIndex="1" />
+                  <Label text="Job" GridPane.rowIndex="2" />
+                  <TextField promptText="Name" GridPane.columnIndex="1" />
+                  <TextField promptText="Surname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="178.0" text="Add Employee" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets top="5.0" />
+                     </GridPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="mdi2a-account-plus" iconSize="20" />
+                     </graphic>
+                  </Button>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Manager" GridPane.rowIndex="3" />
+                  <ComboBox prefHeight="36.0" prefWidth="168.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox prefHeight="36.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Department" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="departmentDropdown" prefHeight="25.0" prefWidth="162.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </GridPane>
+            <VBox prefHeight="310.0" prefWidth="250.0">
+               <children>
+                  <Region prefHeight="109.0" prefWidth="250.0" />
+                  <Label text="Console">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextArea prefHeight="209.0" prefWidth="250.0" />
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane hgap="15.0" prefHeight="82.0" prefWidth="580.0" vgap="15.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="160.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="10.0" prefWidth="180.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="195.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label text="Employee ID" />
+                        <TextField>
+                           <padding>
+                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox layoutX="10.0" prefHeight="51.0" prefWidth="127.0" spacing="5.0" GridPane.columnIndex="1">
+                     <children>
+                        <Label text="New Manager" />
+                        <ComboBox prefWidth="183.0" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="174.0" text="Search" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets top="5.0" />
+                     </GridPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="mdi2a-account-search" iconSize="20" />
+                     </graphic>
+                  </Button>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="106.0" text="Update">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontIcon iconLiteral="mdi2u-update" iconSize="15" />
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" text="Delete">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontIcon iconLiteral="mdi2d-delete" iconSize="15" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="229.0" text="Search All Employees" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets top="5.0" />
+                     </GridPane.margin>
+                     <graphic>
+                        <FontIcon iconLiteral="mdi2a-account-settings" iconSize="20" />
+                     </graphic>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets right="10.0" top="20.0" />
+               </VBox.margin>
+            </GridPane>
+            <ScrollPane prefHeight="312.0" prefWidth="560.0">
+               <content>
+                  <TableView prefHeight="323.0" prefWidth="580.0">
+                     <columns>
+                        <TableColumn minWidth="50.0" prefWidth="-1.0" text="ID" />
+                        <TableColumn minWidth="110.0" prefWidth="-1.0" text="First Name" />
+                        <TableColumn minWidth="110.0" prefWidth="-1.0" text="Last Name" />
+                        <TableColumn minWidth="100.0" prefWidth="-1.0" text="Job" />
+                        <TableColumn minWidth="100.0" prefWidth="-1.0" text="Manager" />
+                        <TableColumn fx:id="departmentcolumn" minWidth="120.0" prefWidth="-1.0" text="Department" />
+                     </columns>
+                  </TableView>
+               </content>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </ScrollPane>
+         </children>
+         <BorderPane.margin>
+            <Insets left="50.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>
