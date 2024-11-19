@@ -1,5 +1,6 @@
 package dev.niss.app;
 
+import dev.niss.App;
 import dev.niss.data.DepartmentDAO;
 import dev.niss.models.Department;
 import dev.niss.models.Employee;
@@ -38,8 +39,7 @@ public class RootController extends FXController {
     @Override
     protected void load_bindings() {
         employee_masterlist = FXCollections.observableArrayList();
-        department_masterlist = FXCollections.observableArrayList(
-                DepartmentDAO.getDepartmentList());
+        department_masterlist = App.COLLECTIONS_REGISTER.getList("DEPARTMENT");
 
         departmentDropdown.setButtonCell(new Department.LIST_CELL());
         departmentDropdown.setCellFactory(cell -> new Department.LIST_CELL());

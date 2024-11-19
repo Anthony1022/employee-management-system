@@ -3,8 +3,9 @@ module niss.employeeJBC {
     requires javafx.base;
     requires javafx.fxml;
 
-    requires core.fx;
+    requires transitive core.fx;
     requires transitive core.db;
+    requires core.util;
     requires javafx.graphics;
 
     opens dev.niss to javafx.fxml;

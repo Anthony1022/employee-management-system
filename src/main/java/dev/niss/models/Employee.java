@@ -35,6 +35,10 @@ public class Employee extends FXModel {
     private FXLongProperty commission;
     private FXObjectProperty<Department> department;
 
+    public Employee(String emp_id) {
+        this(emp_id, null, null, null, null, null, null);
+    }
+
     public Employee(String emp_id, String name, Job job, LocalDate hire_date, Long salary, Long commission,
             Department department) {
         this.emp_id = new FXStringProperty(emp_id);

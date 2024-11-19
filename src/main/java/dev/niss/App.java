@@ -1,12 +1,24 @@
 package dev.niss;
 
 import dev.niss.app.RootLoader;
+import dev.niss.data.DepartmentDAO;
 import dev.sol.core.application.FXApplication;
 import dev.sol.core.application.loader.FXLoaderFactory;
+import dev.sol.core.registry.FXCollectionsRegister;
+import dev.sol.core.registry.FXControllerRegister;
+import dev.sol.core.registry.FXNodeRegister;
 import dev.sol.core.scene.FXSkin;
+import dev.sol.core.thread.FXThreadService;
 import dev.sol.db.DBService;
 
 public class App extends FXApplication {
+    // App Registers
+    public static final FXControllerRegister CONTROLLER_REGISTER = FXControllerRegister.INSTANCE;
+    public static final FXCollectionsRegister COLLECTIONS_REGISTER = FXCollectionsRegister.INSTANCE;
+    public static final FXNodeRegister NODE_REGISTER = FXNodeRegister.INSTANCE;
+
+    public static final FXThreadService THREAD_SERVICE = FXThreadService.INSTANCE;
+
     public static final DBService DB_EMPLOYEE = DBService.INSTANCE
             .initialize("jdbc:mysql://localhost/employee?user=root&passwords=");
 
@@ -15,7 +27,12 @@ public class App extends FXApplication {
         setTitle("EmployeeFX JDBC");
         setSkin(FXSkin.DRACULA);
 
+        _initialize_datatest();
         _initialize_application();
+    }
+
+    private void _initialize_datatest() {
+        COLLECTIONS_REGISTER.register("DEPARTMENT", DepartmentDAO.getDepartmentList());
     }
 
     private void _initialize_application() {
