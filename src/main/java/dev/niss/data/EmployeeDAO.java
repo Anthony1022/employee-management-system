@@ -12,7 +12,8 @@ import dev.niss.models.Department;
 import dev.niss.models.Employee;
 import dev.niss.models.Job;
 import dev.sol.db.DBService;
-import dev.sol.util.CoreLocalDateUtils;
+import dev.sol.util.CoreDateUtils;
+
 import javafx.collections.ObservableList;
 
 public class EmployeeDAO {
@@ -21,15 +22,16 @@ public class EmployeeDAO {
 
     private static final ObservableList<Department> departmentlist = App.COLLECTIONS_REGISTER.getList("DEPARTMENT");
 
-    private Employee data(CachedRowSet crs) {
+    public static Employee data(CachedRowSet crs) {
         try {
             String id = crs.getString("emp_id");
             String name = crs.getString("emp_name");
-            Job job = Job.valueOf(crs.getString("job_name").toUpperCase());
-            LocalDate hireDate = CoreLocalDateUtils.parse(
+            Job job = Job.valueOf(crs.getString("job_name").toUpperCase().trim());
+            Employee manager = new Employee(crs.getString("manager_id"));
+            LocalDate hireDate = CoreDateUtils.parse(
                     crs.getString("hire_date"), "yyyy-MM-dd");
-            long salary = crs.getLong("salary");
-            long commission = crs.getLong("commission");
+            double salary = crs.getDouble("salary");
+            double commission = crs.getDouble("commission");
             Department department = departmentlist.stream()
                     .filter(dept -> {
                         try {
@@ -40,7 +42,7 @@ public class EmployeeDAO {
                         return false;
                     }).findFirst().get();
 
-            return new Employee(id, name, job, hireDate, salary, commission, department);
+            return new Employee(id, name, job, manager, hireDate, salary, commission, department);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,13 +62,16 @@ public class EmployeeDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         list.forEach(employee -> {
             String manager_id = employee.getManager().getEmp_ID();
-            employee.setManager(
-                    list.stream()
-                            .filter(e -> e.getEmp_ID().equals(manager_id))
-                            .findFirst().get());
-            employee.rebaseline();
+            if (!manager_id.isEmpty()) {
+                Employee manager = list.stream()
+                        .filter(e -> e.getEmp_ID().equals(manager_id))
+                        .findFirst().get();
+                employee.setManager(manager);
+                employee.rebaseline();
+            }
         });
 
         return list;

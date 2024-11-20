@@ -2,6 +2,7 @@ package dev.niss;
 
 import dev.niss.app.RootLoader;
 import dev.niss.data.DepartmentDAO;
+import dev.niss.data.EmployeeDAO;
 import dev.sol.core.application.FXApplication;
 import dev.sol.core.application.loader.FXLoaderFactory;
 import dev.sol.core.registry.FXCollectionsRegister;
@@ -10,6 +11,7 @@ import dev.sol.core.registry.FXNodeRegister;
 import dev.sol.core.scene.FXSkin;
 import dev.sol.core.thread.FXThreadService;
 import dev.sol.db.DBService;
+import javafx.collections.FXCollections;
 
 public class App extends FXApplication {
     // App Registers
@@ -32,7 +34,9 @@ public class App extends FXApplication {
     }
 
     private void _initialize_datatest() {
-        COLLECTIONS_REGISTER.register("DEPARTMENT", DepartmentDAO.getDepartmentList());
+        COLLECTIONS_REGISTER.register("DEPARTMENT",
+                FXCollections.observableArrayList(DepartmentDAO.getDepartmentList()));
+        COLLECTIONS_REGISTER.register("EMPLOYEE", FXCollections.observableArrayList(EmployeeDAO.getEmployeeList()));
     }
 
     private void _initialize_application() {
