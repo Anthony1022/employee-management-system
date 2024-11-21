@@ -3,7 +3,7 @@ package dev.niss.models;
 import java.time.LocalDate;
 
 import dev.sol.core.application.FXModel;
-import dev.sol.core.properties.beans.FXDoubleProperty;
+import dev.sol.core.properties.beans.FXLongProperty;
 import dev.sol.core.properties.beans.FXObjectProperty;
 import dev.sol.core.properties.beans.FXStringProperty;
 import javafx.scene.control.Label;
@@ -31,8 +31,8 @@ public class Employee extends FXModel {
     private FXObjectProperty<Job> job;
     private FXObjectProperty<Employee> manager;
     private FXObjectProperty<LocalDate> hire_date;
-    private FXDoubleProperty salary;
-    private FXDoubleProperty commission;
+    private FXLongProperty salary;
+    private FXLongProperty commission;
     private FXObjectProperty<Department> department;
 
     public Employee(String emp_id) {
@@ -46,16 +46,26 @@ public class Employee extends FXModel {
                 null);
     }
 
-    public Employee(String emp_id, String name, Job job, Employee manager, LocalDate hire_date, double salary,
-            double commission,
+    public Employee(String emp_id, String name, Job job, Employee manager, Department department) {
+        this(emp_id,
+                name, job,
+                manager,
+                LocalDate.now(),
+                0,
+                0,
+                department);
+    }
+
+    public Employee(String emp_id, String name, Job job, Employee manager, LocalDate hire_date, long salary,
+            long commission,
             Department department) {
         this.emp_id = new FXStringProperty(emp_id);
         this.name = new FXStringProperty(name);
         this.job = new FXObjectProperty<Job>(job);
         this.manager = new FXObjectProperty<Employee>(manager);
         this.hire_date = new FXObjectProperty<LocalDate>(hire_date);
-        this.salary = new FXDoubleProperty(salary);
-        this.commission = new FXDoubleProperty(commission);
+        this.salary = new FXLongProperty(salary);
+        this.commission = new FXLongProperty(commission);
         this.department = new FXObjectProperty<Department>(department);
 
         track_properties(this.emp_id,
@@ -129,27 +139,27 @@ public class Employee extends FXModel {
         hire_dateProperty().set(hire_date);
     }
 
-    public FXDoubleProperty salaryProperty() {
+    public FXLongProperty salaryProperty() {
         return salary;
     }
 
-    public double getSalary() {
+    public long getSalary() {
         return salaryProperty().get();
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(long salary) {
         salaryProperty().set(salary);
     }
 
-    public FXDoubleProperty commissionProperty() {
+    public FXLongProperty commissionProperty() {
         return commission;
     }
 
-    public double getCommision() {
+    public long getCommision() {
         return commissionProperty().get();
     }
 
-    public void setCommission(double commission) {
+    public void setCommission(long commission) {
         commissionProperty().set(commission);
     }
 

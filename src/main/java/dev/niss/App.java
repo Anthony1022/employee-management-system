@@ -28,6 +28,7 @@ public class App extends FXApplication {
     public void initialize() throws Exception {
         setTitle("EmployeeFX JDBC");
         setSkin(FXSkin.DRACULA);
+        applicationStage.setResizable(false);
 
         _initialize_datatest();
         _initialize_application();

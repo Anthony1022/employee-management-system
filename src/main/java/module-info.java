@@ -7,6 +7,7 @@ module niss.employeeJBC {
     requires transitive core.db;
     requires core.util;
     requires javafx.graphics;
+    requires atlantafx.base;
 
     opens dev.niss to javafx.fxml;
     opens dev.niss.app to javafx.fxml;
