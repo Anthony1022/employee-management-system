@@ -125,6 +125,11 @@ public class RootController extends FXController {
 
     @FXML
     private void handleUpdateEmployee() {
+        if (newManagerField.getValue() == null) {
+            newManagerField.pseudoClassStateChanged(Styles.STATE_DANGER, true);
+            Animations.flash(departmentField);
+        }
+
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
         if (selectedEmployee == null) {
             Alert alert = new Alert(AlertType.ERROR);
@@ -135,6 +140,8 @@ public class RootController extends FXController {
             alert.show();
             return;
         }
+        selectedEmployee.setManager(newManagerField.getValue());
+        EmployeeDAO.update(selectedEmployee);
 
     }
 
@@ -169,7 +176,8 @@ public class RootController extends FXController {
         employeeFilteredlist = new FilteredList<>(employee_masterlist, p -> true);
 
         managerlist = new FilteredList<>(employee_masterlist, employeee -> {
-            return employeee.getJob() == Job.PRESIDENT || employeee.getJob() == Job.MANAGER;
+            return employeee.getJob() == Job.PRESIDENT || employeee.getJob() == Job.MANAGER
+                    || employeee.getJob() == Job.ANALYST;
         });
         managerField.setButtonCell(new MANAGER_CELL());
         managerField.setCellFactory(cell -> new MANAGER_CELL());
@@ -177,7 +185,8 @@ public class RootController extends FXController {
 
         newManagerField.setButtonCell(new MANAGER_CELL());
         newManagerField.setCellFactory(cell -> new MANAGER_CELL());
-        newManagerField.setItems(managerlist);
+        newManagerField.getItems().add(null);
+        newManagerField.getItems().addAll(managerlist);
 
         ObservableList<Job> joblList = FXCollections.observableArrayList(Job.values());
         if (employee_masterlist.stream().anyMatch(e -> e.getJob().equals(Job.PRESIDENT))) {
@@ -236,7 +245,14 @@ public class RootController extends FXController {
         filterEmployeeField.textProperty().addListener((o, ov, nv) -> {
             filterEmployeeField.pseudoClassStateChanged(Styles.STATE_DANGER, false);
         });
-        newManagerField.getSelectionModel().selectFirst();
+        newManagerField.valueProperty().addListener((o, ov, nv) -> {
+            newManagerField.pseudoClassStateChanged(Styles.STATE_DANGER, false);
+        });
+
+        employeeTable.getSelectionModel().selectedItemProperty().addListener((o, ov, nv) -> {
+            newManagerField.setValue(nv.getManager());
+        });
+
     }
 
     private void reset_newEmployeeFields() {

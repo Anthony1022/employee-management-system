@@ -100,7 +100,7 @@
                   <VBox layoutX="10.0" prefHeight="51.0" prefWidth="127.0" spacing="5.0" GridPane.columnIndex="1">
                      <children>
                         <Label text="New Manager" />
-                        <ComboBox fx:id="newManagerField" prefWidth="183.0" />
+                        <ComboBox fx:id="newManagerField" prefWidth="183.0" promptText="Select Manager" />
                      </children>
                   </VBox>
                   <Button mnemonicParsing="false" onAction="#handleSearchEmployee" prefHeight="27.0" prefWidth="174.0" text="Search" GridPane.rowIndex="1">

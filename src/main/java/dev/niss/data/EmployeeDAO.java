@@ -2,6 +2,7 @@ package dev.niss.data;
 
 import java.sql.SQLException;
 import java.sql.Types;
+import java.text.NumberFormat.Style;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -101,6 +102,8 @@ public class EmployeeDAO {
         DB.insert(TABLE, new DBParam(Types.VARCHAR, "emp_id", employee.getEmp_ID()));
     }
     public static void update(Employee employee){
-        DB.update(TABLE, new DBParam(Types.VARCHAR, "emp_id", employee.getEmp_ID()), paramList(employee));
+      DB.update(TABLE, new DBParam(Types.VARCHAR, "emp_id", employee.getEmp_ID())
+      ,new DBParam(Types.VARCHAR, "manager_id", employee.getManager().getEmp_ID()));
+      
     }
 }
